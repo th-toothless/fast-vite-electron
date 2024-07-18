@@ -1,0 +1,52 @@
+{
+  "name": "fast-vite-electron",
+  "version": "0.0.1",
+  "packageManager": "pnpm@9.5.0",
+  "description": "Vite + Electron with esbuild, so fast! ⚡",
+  "main": "dist/main/index.js",
+  "scripts": {
+    "dev": "rimraf dist && vite",
+    "debug": "rimraf dist && vite -- --dsb-debug",
+    "build": "rimraf dist && vue-tsc && vite build",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "test": "npm run test:main && npm run test:render",
+    "test:render": "vitest run -r src/render --passWithNoTests",
+    "test:main": "vitest run -r src/main --passWithNoTests",
+    "test:e2e": "vitest run",
+    "postinstall": "electron-builder install-app-deps",
+    "postuninstall": "electron-builder install-app-deps"
+  },
+  "dependencies": {
+    "einf": "^1.5.3",
+    "vue": "^3.4.31"
+  },
+  "devDependencies": {
+    "@lightwing/eslint-config": "1.0.65",
+    "@vitejs/plugin-vue": "5.0.5",
+    "@vue/compiler-sfc": "3.4.32",
+    "@vue/test-utils": "2.4.6",
+    "electron": "31.2.1",
+    "electron-builder": "24.13.3",
+    "eslint": "9.7.0",
+    "happy-dom": "14.12.3",
+    "lint-staged": "15.2.7",
+    "playwright": "1.45.2",
+    "rimraf": "6.0.1",
+    "simple-git-hooks": "2.11.1",
+    "tslib": "2.6.3",
+    "typescript": "5.5.3",
+    "vite": "5.3.4",
+    "vite-plugin-doubleshot": "0.0.16",
+    "vitest": "2.0.3",
+    "vue-tsc": "2.0.26"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "npx lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx,vue,md,json,yml}": [
+      "eslint --fix"
+    ]
+  }
+}
